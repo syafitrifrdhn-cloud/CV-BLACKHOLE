@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Fardhan Rasyid</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap');
+
+        :root {
+            --bg-color: #030305;
+            --text-color: #e0e0e0;
+            --accent: #8a2be2; /* Cosmic Purple */
+            --accent-glow: rgba(138, 43, 226, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Starry Background */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: transparent;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 3, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 300;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 100px 10vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hero & Blackhole Animation */
+        #home {
+            text-align: center;
+        }
+
+        .blackhole-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blackhole {
+            width: 150px;
+            height: 150px;
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 60px 30px #4a00e0,
+                0 0 100px 60px #8e2de2,
+                inset 0 0 20px #000;
+            animation: pulse 4s infinite alternate;
+            z-index: 2;
+        }
+
+        .accretion-disk {
+            position: absolute;
+            width: 350px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 30px 10px rgba(138, 43, 226, 0.4);
+            transform: rotateX(70deg) rotateZ(0deg);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 50px 20px #4a00e0, 0 0 80px 40px #8e2de2; }
+            100% { transform: scale(1.05); box-shadow: 0 0 70px 40px #4a00e0, 0 0 120px 70px #8e2de2; }
+        }
+
+        @keyframes spin {
+            100% { transform: rotateX(70deg) rotateZ(360deg); }
+        }
+
+        h2.title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            color: #aaa;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        /* About Me Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 900px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Portfolio / Videos */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #fff;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+
+        .video-card video {
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+            background: #000;
+        }
+
+        .video-info {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .video-info h3 {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-item {
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-item span {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content { flex-direction: column; text-align: center; }
+            nav ul { display: none; } /* Simplified for mobile, can add hamburger menu later */
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="stars"></canvas>
+
+    <nav>
+        <h1>FR.</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">Editing Aesthetic</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="blackhole-container">
+            <div class="accretion-disk"></div>
+            <div class="blackhole"></div>
+        </div>
+        <h2 class="title">Fardhan Rasyid</h2>
+        <p class="subtitle">Aesthetic Video Editor & Creator</p>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <!-- Ganti src dengan nama file foto Anda, pastikan file berada di folder yang sama -->
+            <img src="foto-fardhan.png" alt="Fardhan Rasyid" class="profile-img">
+            <div>
+                <h3 style="margin-bottom: 15px; color: #fff; font-size: 1.8rem;">Halo, Saya Fardhan Rasyid</h3>
+                <p style="line-height: 1.8; color: #ccc;">
+                    Saya adalah seorang Video Editor yang berfokus pada gaya visual <i>aesthetic</i>. 
+                    Ketertarikan saya meliputi tipografi sinematik dan pengeditan video motivasi yang mampu 
+                    menyampaikan emosi dan pesan secara mendalam melalui paduan visual dan audio yang selaras.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Hasil Editing -->
+    <section id="portfolio">
+        <h2 class="section-title">Hasil Editing Aesthetic</h2>
+        <div class="video-grid">
+            
+            <!-- Video 1 -->
+            <div class="video-card">
+                <!-- Ganti src dengan file video Anda -->
+                <video controls>
+                    <source src="video1_typography.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <div class="video-info">
+                    <h3>Typography Aesthetic I</h3>
+                    <p>Eksplorasi lirik dan tipografi dinamis.</p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <video controls>
+                    <source src="video2_typography.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <div class="video-info">
+                    <h3>Typography Aesthetic II</h3>
+                    <p>Paduan visual minimalis dan teks bergerak.</p>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <video controls>
+                    <source src="video3_motivasi.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <div class="video-info">
+                    <h3>Clip Video Motivasi I</h3>
+                    <p>Pesan bermakna dengan grading warna cinematic.</p>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <video controls>
+                    <source src="video4_motivasi.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <div class="video-info">
+                    <h3>Clip Video Motivasi II</h3>
+                    <p>Visual pembangkit semangat dan audio atmosferik.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Person -->
+    <section id="contact">
+        <h2 class="section-title">Contact Person</h2>
+        <div class="contact-container">
+            <p style="margin-bottom: 20px; color: #ccc;">Tertarik untuk berkolaborasi atau menggunakan jasa editing saya? Silakan hubungi:</p>
+            
+            <div class="contact-item">
+                <span>Email:</span> rasyid070508@gmail.com
+            </div>
+            <div class="contact-item">
+                <span>Telepon / WA:</span> 0895414522664
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Interactive Star Background -->
+    <script>
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const starsArray = [];
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // Parallax effect toward center (blackhole effect)
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                this.x -= (this.x - centerX) * 0.0005;
+                this.y -= (this.y - centerY) * 0.0005;
+
+                if (this.size > 0.2) this.size -= 0.005;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2;
+                }
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initStars() {
+            for (let i = 0; i < 200; i++) {
+                starsArray.push(new Star());
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < starsArray.length; i++) {
+                starsArray[i].update();
+                starsArray[i].draw();
+            }
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        initStars();
+        animateStars();
+    </script>
+
+</body>
+</html>
